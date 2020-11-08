@@ -1,0 +1,7 @@
+{
+  "name": "bible-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
