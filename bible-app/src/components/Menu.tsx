@@ -36,7 +36,7 @@ const appPages: AppPage[] = [
     mdIcon: paperPlaneSharp
   },
   {
-    title: 'Favorites',
+    title: 'read',
     url: '/page/Favorites',
     iosIcon: heartOutline,
     mdIcon: heartSharp
