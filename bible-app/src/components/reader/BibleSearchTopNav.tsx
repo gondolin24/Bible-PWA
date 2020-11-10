@@ -1,17 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     IonButton,
-    IonCard, IonCardContent,
+    IonCard,
+    IonCardContent,
     IonCardHeader,
-    IonCardSubtitle, IonCardTitle,
-    IonContent, IonIcon,
-    IonItem, IonItemDivider,
-    IonLabel, IonRange,
+    IonCardSubtitle,
+    IonCardTitle,
+    IonContent,
+    IonIcon,
+    IonItem,
+    IonLabel,
+    IonRange,
     IonSelect,
     IonSelectOption
 } from "@ionic/react";
-import {bookOutline, bookSharp, pin, reader, readerOutline, sunny, walk, warning, wifi, wine} from "ionicons/icons";
-
+import {bookOutline, readerOutline, wine} from "ionicons/icons";
 
 const BibleSearchTopNav: React.FC = () => {
     const [testament, setTestament] = useState('old_testament')
@@ -21,7 +24,47 @@ const BibleSearchTopNav: React.FC = () => {
     const [chapterValue, setChapterValue] = useState(1);
 
     const [isVerse, setIsVerse] = useState(false)
+    const oldie = [{
+        value: 'John',
+        text: 'John'
+    },
+        {
+            value: 'Mark',
+            text: 'Mark'
+        }
+    ].map((val, index) => {
+        return <IonSelectOption value={val.value} key={index}>{val.text}</IonSelectOption>
 
+    })
+
+    const newE = [{
+        value: 'Eduardo',
+        text: 'Eduardo'
+    },
+        {
+            value: 'Job',
+            text: 'Job'
+        }
+    ].map((val, index) => {
+        return <IonSelectOption value={val.value} key={index}>{val.text}</IonSelectOption>
+
+    })
+
+    const [options, setOptions] = useState(oldie)
+
+
+    useEffect(() => {
+
+        if (testament === 'old_testament') {
+            setOptions(oldie)
+            setBook('John')
+
+        } else {
+            setOptions(newE)
+            setBook('Eduardo')
+        }
+
+    }, [testament])
 
     return (
         <IonContent>
@@ -35,17 +78,18 @@ const BibleSearchTopNav: React.FC = () => {
             <IonItem>
                 <IonLabel>Select: Book</IonLabel>
                 <IonSelect value={book} placeholder="Select One" onIonChange={e => setBook(e.detail.value)}>
-                    <IonSelectOption value="John">John</IonSelectOption>
-                    <IonSelectOption value="Mark">Mark</IonSelectOption>
+                    {options}
                 </IonSelect>
             </IonItem>
 
 
             <IonCard>
+
                 <IonCardHeader>
                     <IonCardSubtitle>Chapter {chapterValue}, verse {verseValue}</IonCardSubtitle>
                     <IonCardTitle>Book of {book}</IonCardTitle>
                 </IonCardHeader>
+
 
                 <IonCardContent>
                     Early on the first day of the week, while it was still dark, Mary Magdalene went to the tomb and saw
@@ -53,6 +97,9 @@ const BibleSearchTopNav: React.FC = () => {
                     other disciple, the one Jesus loved, and said, “They have taken the Lord out of the tomb, and we
                     don’t know where they have put him!”
                 </IonCardContent>
+                <IonItem>
+                    <IonIcon icon={wine} color={'primary'} slot="end"/>
+                </IonItem>
             </IonCard>
 
             <IonItem>
@@ -73,12 +120,6 @@ const BibleSearchTopNav: React.FC = () => {
                 }
 
 
-            </IonItem>
-
-
-            <IonItem>
-                <IonButton slot={'end'}>Next</IonButton>
-                <IonButton slot={'start'}>Previous</IonButton>
             </IonItem>
 
         </IonContent>
