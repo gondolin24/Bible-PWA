@@ -7,6 +7,8 @@ import {
     IonCardSubtitle,
     IonCardTitle,
     IonContent,
+    IonFab,
+    IonFabButton,
     IonIcon,
     IonItem,
     IonLabel,
@@ -14,11 +16,24 @@ import {
     IonSelect,
     IonSelectOption
 } from "@ionic/react";
-import {bookOutline, readerOutline, wine} from "ionicons/icons";
+import {bookOutline, caretBack, caretForward, readerOutline, wine} from "ionicons/icons";
+import {BibleService} from "../../services/bible/BibleService";
+import BookSelection from "./BookSelection";
+
+function generateDropDown(items: any[]) {
+    return items.map((val, index) => {
+        return <IonSelectOption value={val.value} key={index}>{val.text}</IonSelectOption>
+
+    })
+}
+
 
 const BibleSearchTopNav: React.FC = () => {
     const [testament, setTestament] = useState('old_testament')
-    const [book, setBook] = useState('John')
+    const [bibleBookList, setBibleBookList] = useState(bibleService.getBookList(testament))
+    const [selectedBook, setSelectedBook] = useState(bibleBookList[0])
+
+
     const [value, setValue] = useState(1);
     const [verseValue, setVerseValue] = useState(1);
     const [chapterValue, setChapterValue] = useState(1);
@@ -39,33 +54,15 @@ const BibleSearchTopNav: React.FC = () => {
     }, [saved])
 
 
-    const oldie = [{
-        value: 'John',
-        text: 'John'
-    },
-        {
-            value: 'Mark',
-            text: 'Mark'
-        }
-    ].map((val, index) => {
-        return <IonSelectOption value={val.value} key={index}>{val.text}</IonSelectOption>
-
-    })
-
-    const [options, setOptions] = useState(oldie)
-
-
     useEffect(() => {
-
         const bookList = bibleService.getBookList(testament)
-        const bookMap = bookList.map((book) => {
-            return {
-                value: book,
-                test: book
-            }
-        })
-        setOptions(generateDropDown(bookMap))
+        setBibleBookList(bookList)
+        setSelectedBook(bookList[0])
     }, [testament])
+
+    function setChildSelectedBook(val: any) {
+        setSelectedBook(val)
+    }
 
     return (
         <IonContent>
@@ -76,30 +73,25 @@ const BibleSearchTopNav: React.FC = () => {
                     <IonSelectOption value="new_testament">New</IonSelectOption>
                 </IonSelect>
             </IonItem>
-            <IonItem>
-                <IonLabel>Select: Book</IonLabel>
-                <IonSelect value={book} placeholder="Select One" onIonChange={e => setBook(e.detail.value)}>
-                    {options}
-                </IonSelect>
-            </IonItem>
-
+            <BookSelection bookList={bibleBookList} selectedBook={selectedBook} setBook={setChildSelectedBook}/>
 
             <IonCard>
 
                 <IonCardHeader>
                     <IonCardSubtitle>Chapter {chapterValue}, verse {verseValue}</IonCardSubtitle>
-                    <IonCardTitle>Book of {book}</IonCardTitle>
+                    <IonCardTitle>Book of {selectedBook}</IonCardTitle>
                 </IonCardHeader>
 
 
                 <IonCardContent>
-                    Early on the first day of the week, while it was still dark, Mary Magdalene went to the tomb and saw
+                    Early on the first day of the week, while it was still dark, Mary Magdalene went to the tomb and
+                    saw
                     that the stone had been removed from the entrance. 2 So she came running to Simon Peter and the
                     other disciple, the one Jesus loved, and said, “They have taken the Lord out of the tomb, and we
                     don’t know where they have put him!”
                 </IonCardContent>
                 <IonItem>
-                    <IonIcon icon={wine} color={'primary'} slot="end"/>
+                    <IonIcon icon={wine} color={flag} onClick={() => setSaved(!saved)} slot="end"/>
                 </IonItem>
             </IonCard>
 

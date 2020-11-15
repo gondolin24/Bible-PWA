@@ -5,10 +5,10 @@ export class BibleService {
     getBookList(testament: string): string[] {
         const testamentService = new TestamentService()
         if (testament === 'old_testament') {
-            return testamentService.getNewTestament().getBookList()
+            return testamentService.getOldTestament().getBookList()
         }
         //given a testament return a list of all the books in that testament
-        return new TestamentService().getOldTestament().getBookList()
+        return new TestamentService().getNewTestament().getBookList()
     }
 
     getChapters(): Number {
