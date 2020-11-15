@@ -1,12 +1,12 @@
 import React from 'react';
-import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
+import {IonButtons, IonContent, IonHeader, IonItem, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import BibleSearchTopNav from "../components/search/BibleSearchTopNav";
 
 interface ContainerProps {
     name: string;
 }
 
-const ExplorePage: React.FC<ContainerProps> = ({name}) => {
+const BibleReaderPage: React.FC<ContainerProps> = ({name}) => {
 
     return (
         <IonPage>
@@ -15,7 +15,7 @@ const ExplorePage: React.FC<ContainerProps> = ({name}) => {
                     <IonButtons slot="start">
                         <IonMenuButton/>
                     </IonButtons>
-                    <IonTitle>Bible Explorer</IonTitle>
+                    <IonTitle>Bible Reader</IonTitle>
                 </IonToolbar>
             </IonHeader>
 
@@ -25,10 +25,12 @@ const ExplorePage: React.FC<ContainerProps> = ({name}) => {
                         <IonTitle size="large">{name}</IonTitle>
                     </IonToolbar>
                 </IonHeader>
-                <BibleSearchTopNav/>
+                <IonItem>
+                    {'Reader page'}
+                </IonItem>
             </IonContent>
         </IonPage>
     );
 };
 
-export default ExplorePage;
+export default BibleReaderPage;
