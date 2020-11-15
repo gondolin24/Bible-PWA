@@ -24,6 +24,21 @@ const BibleSearchTopNav: React.FC = () => {
     const [chapterValue, setChapterValue] = useState(1);
 
     const [isVerse, setIsVerse] = useState(false)
+
+    const [saved, setSaved] = useState(false)
+    const [flag, setFlag] = useState('primary')
+
+    useEffect(() => {
+        if (saved) {
+            setFlag('primary')
+
+        } else {
+            setFlag('warning')
+        }
+
+    }, [saved])
+
+
     const oldie = [{
         value: 'John',
         text: 'John'
@@ -37,33 +52,19 @@ const BibleSearchTopNav: React.FC = () => {
 
     })
 
-    const newE = [{
-        value: 'Eduardo',
-        text: 'Eduardo'
-    },
-        {
-            value: 'Job',
-            text: 'Job'
-        }
-    ].map((val, index) => {
-        return <IonSelectOption value={val.value} key={index}>{val.text}</IonSelectOption>
-
-    })
-
     const [options, setOptions] = useState(oldie)
 
 
     useEffect(() => {
 
-        if (testament === 'old_testament') {
-            setOptions(oldie)
-            setBook('John')
-
-        } else {
-            setOptions(newE)
-            setBook('Eduardo')
-        }
-
+        const bookList = bibleService.getBookList(testament)
+        const bookMap = bookList.map((book) => {
+            return {
+                value: book,
+                test: book
+            }
+        })
+        setOptions(generateDropDown(bookMap))
     }, [testament])
 
     return (

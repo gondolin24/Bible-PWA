@@ -1,16 +1,16 @@
 import React from 'react';
 import {
-    IonButtons, IonCheckbox,
+    IonButtons,
+    IonCheckbox,
     IonContent,
     IonHeader,
     IonItem,
-    IonItemDivider, IonLabel,
+    IonLabel,
     IonMenuButton,
     IonPage,
     IonTitle,
     IonToolbar
 } from "@ionic/react";
-import BibleSearchTopNav from "../components/search/BibleSearchTopNav";
 
 interface ContainerProps {
     name: string;
