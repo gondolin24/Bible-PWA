@@ -19,6 +19,7 @@ import {
 import {bookOutline, caretBack, caretForward, readerOutline, wine} from "ionicons/icons";
 import {BibleService} from "../../services/bible/BibleService";
 import BookSelection from "./BookSelection";
+import {TESTAMENTS} from "../../enums/Testaments";
 
 function generateDropDown(items: any[]) {
     return items.map((val, index) => {
@@ -69,8 +70,8 @@ const BibleSearchTopNav: React.FC = () => {
             <IonItem>
                 <IonLabel>Select: Testament</IonLabel>
                 <IonSelect value={testament} placeholder="Select One" onIonChange={e => setTestament(e.detail.value)}>
-                    <IonSelectOption value="old_testament">Old</IonSelectOption>
-                    <IonSelectOption value="new_testament">New</IonSelectOption>
+                    <IonSelectOption value={TESTAMENTS.OLD_TESTAMENTS}>Old</IonSelectOption>
+                    <IonSelectOption value={TESTAMENTS.NEW_TESTAMENTS}>New</IonSelectOption>
                 </IonSelect>
             </IonItem>
             <BookSelection bookList={bibleBookList} selectedBook={selectedBook} setBook={setChildSelectedBook}/>

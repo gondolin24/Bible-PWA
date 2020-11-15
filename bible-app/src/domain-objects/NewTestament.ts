@@ -1,8 +1,21 @@
 import {Testament} from "./Testament";
+import * as MARK from '../bible/newTestament/Mark.json'
+import * as MATTHEW from '../bible/newTestament/Matthew.json'
+import {BibleBook} from "./BibleBook";
+
 
 export class NewTestament extends Testament {
-    getBookList(): string[] {
-        return ['new Book 1', 'new Book 2']
+
+    static fromFileSource() {
+
+        const rawBooks = [
+            MARK,
+            MATTHEW
+        ]
+
+        const books = rawBooks.map((book) => new BibleBook(book))
+        return new NewTestament(books)
+
     }
 
 }

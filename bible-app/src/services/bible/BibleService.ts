@@ -1,14 +1,15 @@
-import {TestamentService} from "./TestamentService";
+import {TESTAMENTS} from "../../enums/Testaments";
+import {NewTestament} from "../../domain-objects/NewTestament";
+import {OldTestament} from "../../domain-objects/OldTestament";
 
 export class BibleService {
 
     getBookList(testament: string): string[] {
-        const testamentService = new TestamentService()
-        if (testament === 'old_testament') {
-            return testamentService.getOldTestament().getBookList()
+        if (testament === TESTAMENTS.OLD_TESTAMENTS) {
+            return OldTestament.fromFileSource().bookNameList
         }
         //given a testament return a list of all the books in that testament
-        return new TestamentService().getNewTestament().getBookList()
+        return NewTestament.fromFileSource().bookNameList
     }
 
     getChapters(): Number {
@@ -21,6 +22,10 @@ export class BibleService {
 
     getVerse(): String {
         return ''
+    }
+
+    getPreviousVerse() {
+
     }
 
 }
