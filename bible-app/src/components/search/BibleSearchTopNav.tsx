@@ -28,6 +28,7 @@ const BibleSearchTopNav: React.FC = () => {
     const [testament, setTestament] = useState(TESTAMENTS.OLD_TESTAMENTS)
     const [bibleBookList, setBibleBookList] = useState(bibleService.getBookList(testament))
     const [selectedBook, setSelectedBook] = useState(bibleBookList[0])
+    const [chapterVerses, setChapterVerses] = useState<string[]>([])
 
 
     const [verseValue, setVerseValue] = useState(1);
@@ -38,7 +39,7 @@ const BibleSearchTopNav: React.FC = () => {
     const [saved, setSaved] = useState(false)
     const [flag, setFlag] = useState('primary')
     const [chapterRange, setChapterRange] = useState(30)
-
+    const [verseText, setVerseText] = useState(bibleService.getInitialVerse(selectedBook))
 
     useEffect(() => {
         if (saved) {
@@ -64,6 +65,24 @@ const BibleSearchTopNav: React.FC = () => {
     }, [testament, selectedBook])
 
 
+    useEffect(() => {
+        const verses = bibleService.getBookVerses(selectedBook, chapterValue)
+        setChapterVerses(verses)
+
+    }, [isVerse])
+
+    useEffect(() => {
+
+        setVerseText(chapterVerses[verseValue])
+
+    }, [verseValue])
+    useEffect(() => {
+        const verses = bibleService.getBookVerses(selectedBook, chapterValue)
+        setChapterVerses(verses)
+        setVerseText(chapterVerses[verseValue])
+
+    }, [chapterValue])
+
     function setChildSelectedBook(val: any) {
         setSelectedBook(val)
     }
@@ -88,11 +107,7 @@ const BibleSearchTopNav: React.FC = () => {
 
 
                 <IonCardContent>
-                    Early on the first day of the week, while it was still dark, Mary Magdalene went to the tomb and
-                    saw
-                    that the stone had been removed from the entrance. 2 So she came running to Simon Peter and the
-                    other disciple, the one Jesus loved, and said, “They have taken the Lord out of the tomb, and we
-                    don’t know where they have put him!”
+                    {verseText}
                 </IonCardContent>
                 <IonItem>
                     <IonIcon icon={wine} color={flag} onClick={() => setSaved(!saved)} slot="end"/>
@@ -102,7 +117,7 @@ const BibleSearchTopNav: React.FC = () => {
             <IonItem>
 
                 {isVerse &&
-                <IonRange min={1} max={80} value={verseValue} step={1} pin={true}
+                <IonRange min={1} max={chapterVerses.length} value={verseValue} step={1} pin={true}
                           onIonChange={e => setVerseValue(e.detail.value as number)}>
                     <IonIcon size="small" slot="start" icon={bookOutline}/>
                     <IonButton slot={'end'} onClick={() => setIsVerse(!isVerse)}>Verse</IonButton>

@@ -31,6 +31,19 @@ export class BibleService {
         return [...OldTestament.fromFileSource().bookList, ...NewTestament.fromFileSource().bookList]
     }
 
+    getBookVerses(book: string, chapterNumber: number): string[] {
+        return this.getBook(book).getChapter(chapterNumber).verses
+    }
+
+    getInitialVerse(book: string): string {
+        return this.getBook(book).getChapter(1).verses[0]
+
+    }
+
+    getAllChapterVerses() {
+
+    }
+
     getVerses(): Number {
         return 0
     }

@@ -20,6 +20,12 @@ export class BibleBook {
             .map((chapter: any) => BibleChapter.fromRawData(chapter))
     }
 
+    getChapter(chapterNum: Number): BibleChapter {
+        // @ts-ignore
+        let bookChapter = this.bookChapters[chapterNum];
+        return bookChapter
+    }
+
     get numChapters(): number {
         return this.bookChapters.length
     }
