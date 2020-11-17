@@ -21,13 +21,6 @@ import {BibleService} from "../../services/bible/BibleService";
 import BookSelection from "./BookSelection";
 import {TESTAMENTS} from "../../enums/Testaments";
 
-function generateDropDown(items: any[]) {
-    return items.map((val, index) => {
-        return <IonSelectOption value={val.value} key={index}>{val.text}</IonSelectOption>
-
-    })
-}
-
 
 const BibleSearchTopNav: React.FC = () => {
     const [testament, setTestament] = useState('old_testament')
@@ -35,7 +28,6 @@ const BibleSearchTopNav: React.FC = () => {
     const [selectedBook, setSelectedBook] = useState(bibleBookList[0])
 
 
-    const [value, setValue] = useState(1);
     const [verseValue, setVerseValue] = useState(1);
     const [chapterValue, setChapterValue] = useState(1);
 
@@ -43,6 +35,8 @@ const BibleSearchTopNav: React.FC = () => {
 
     const [saved, setSaved] = useState(false)
     const [flag, setFlag] = useState('primary')
+    const [chapterRange, setChapterRange] = useState(30)
+
 
     useEffect(() => {
         if (saved) {
@@ -60,6 +54,13 @@ const BibleSearchTopNav: React.FC = () => {
         setBibleBookList(bookList)
         setSelectedBook(bookList[0])
     }, [testament])
+
+
+    useEffect(() => {
+        const book = bibleService.getBook(testament, selectedBook)
+        setChapterRange(book.numChapters)
+    }, [testament, selectedBook])
+
 
     function setChildSelectedBook(val: any) {
         setSelectedBook(val)
@@ -106,7 +107,7 @@ const BibleSearchTopNav: React.FC = () => {
                 </IonRange>
                 }
                 {!isVerse &&
-                <IonRange min={1} max={20} step={1} value={chapterValue} pin={true}
+                <IonRange min={1} max={chapterRange} step={1} value={chapterValue} pin={true}
                           onIonChange={e => setChapterValue(e.detail.value as number)}>
                     <IonIcon size="small" slot="start" icon={readerOutline}/>
                     <IonButton slot={'end'} onClick={() => setIsVerse(!isVerse)}>CHAPTER</IonButton>

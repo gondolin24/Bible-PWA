@@ -20,8 +20,8 @@ export class BibleBook {
             .map((chapter: any) => BibleChapter.fromRawData(chapter))
     }
 
-    get numChapters() {
-        return 0
+    get numChapters(): number {
+        return this.bookChapters.length
     }
 
 }

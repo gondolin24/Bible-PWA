@@ -17,7 +17,8 @@ export abstract class Testament {
         return this.bookList.map((book) => book.name)
     }
 
-    getBookByName(name: string) {
+    getBookByName(name: string): BibleBook {
+        // @ts-ignore
         return this.bookList.find((book) => book.name === name)
     }
 
