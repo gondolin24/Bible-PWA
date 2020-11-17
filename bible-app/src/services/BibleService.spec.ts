@@ -1,11 +1,16 @@
 // @ts-ignore
-import {NewTestament} from "../domain-objects/NewTestament";
+
+import {BibleService} from "./bible/BibleService";
 
 describe('Test Bible Service', () => {
 
-    it('test import', () => {
-        const g = NewTestament.fromFileSource().bookList[0].bookChapters
-        expect([]).toEqual(['Book 1', 'Book 2'])
+    it('test get book', () => {
+        const bibleService = new BibleService()
+
+        const bookList = bibleService.getBook('MARK')
+        const numChapters = bookList.numChapters
+        expect(numChapters).toEqual(16)
+
     })
 
 })

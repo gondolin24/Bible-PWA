@@ -2,6 +2,7 @@ import {TESTAMENTS} from "../../enums/Testaments";
 import {NewTestament} from "../../domain-objects/NewTestament";
 import {OldTestament} from "../../domain-objects/OldTestament";
 import {BibleBook} from "../../domain-objects/BibleBook";
+import {equalsIgnoreCase} from "../../Util";
 
 export class BibleService {
 
@@ -21,8 +22,13 @@ export class BibleService {
         return 0
     }
 
-    getBook(testament: string, book: string): BibleBook {
-        return this.getTestamentObject(testament).getBookByName(book)
+    getBook(book: string): BibleBook {
+        // @ts-ignore
+        return this.getAllBooks().find((bibleBook) => equalsIgnoreCase(bibleBook.name, book))
+    }
+
+    getAllBooks() {
+        return [...OldTestament.fromFileSource().bookList, ...NewTestament.fromFileSource().bookList]
     }
 
     getVerses(): Number {

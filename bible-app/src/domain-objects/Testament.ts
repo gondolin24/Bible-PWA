@@ -1,4 +1,5 @@
 import {BibleBook} from "./BibleBook";
+import {equalsIgnoreCase} from "../Util";
 
 export abstract class Testament {
 
@@ -19,7 +20,7 @@ export abstract class Testament {
 
     getBookByName(name: string): BibleBook {
         // @ts-ignore
-        return this.bookList.find((book) => book.name === name)
+        return this.bookList.find((book) => equalsIgnoreCase(book.name, name))
     }
 
 }

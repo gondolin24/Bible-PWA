@@ -23,7 +23,9 @@ import {TESTAMENTS} from "../../enums/Testaments";
 
 
 const BibleSearchTopNav: React.FC = () => {
-    const [testament, setTestament] = useState('old_testament')
+    const bibleService = new BibleService()
+
+    const [testament, setTestament] = useState(TESTAMENTS.OLD_TESTAMENTS)
     const [bibleBookList, setBibleBookList] = useState(bibleService.getBookList(testament))
     const [selectedBook, setSelectedBook] = useState(bibleBookList[0])
 
@@ -57,7 +59,7 @@ const BibleSearchTopNav: React.FC = () => {
 
 
     useEffect(() => {
-        const book = bibleService.getBook(testament, selectedBook)
+        const book = bibleService.getBook(selectedBook)
         setChapterRange(book.numChapters)
     }, [testament, selectedBook])
 
@@ -114,8 +116,19 @@ const BibleSearchTopNav: React.FC = () => {
                 </IonRange>
                 }
 
-
             </IonItem>
+            <IonFab vertical="bottom" horizontal="start">
+                <IonFabButton color={'next'}>
+                    <IonIcon icon={caretBack}/>
+                </IonFabButton>
+            </IonFab>
+
+            <IonFab vertical="bottom" horizontal="end">
+                <IonFabButton color={'next'}>
+                    <IonIcon icon={caretForward}/>
+                </IonFabButton>
+            </IonFab>
+
 
         </IonContent>
     );
