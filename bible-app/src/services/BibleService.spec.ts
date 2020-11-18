@@ -18,5 +18,11 @@ describe('Test Bible Service', () => {
         expect(35).toEqual(verses.length)
     })
 
+    it('test get initial verse ', () => {
+        const bibleService = new BibleService()
+        const initialVerse = bibleService.getInitialVerse('MARK')
+        expect("The beginning of the gospel of Jesus Christ, the Son of God;").toEqual(initialVerse)
+    })
+
 
 })

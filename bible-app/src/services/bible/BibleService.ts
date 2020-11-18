@@ -15,6 +15,10 @@ export class BibleService {
     }
 
     getBookList(testament: string): string[] {
+        if (testament === TESTAMENTS.ALL_TESTAMENTS) {
+            return this.getAllBooks().map((book) => book.name)
+        }
+
         return this.getTestamentObject(testament).bookNameList
     }
 

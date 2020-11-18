@@ -22,7 +22,7 @@ export class BibleBook {
 
     getChapter(chapterNum: Number): BibleChapter {
         // @ts-ignore
-        let bookChapter = this.bookChapters[chapterNum];
+        let bookChapter = this.bookChapters[chapterNum - 1];
         return bookChapter
     }
 

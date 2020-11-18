@@ -17,13 +17,15 @@ import {
     IonSelectOption
 } from "@ionic/react";
 import {bookOutline, caretBack, caretForward, readerOutline, wine} from "ionicons/icons";
-import {BibleService} from "../../services/bible/BibleService";
 import BookSelection from "./BookSelection";
 import {TESTAMENTS} from "../../enums/Testaments";
+import DI_CONTAINER from "../../d-i-containers/DependencyInjection";
 
 
 const BibleSearchTopNav: React.FC = () => {
-    const bibleService = new BibleService()
+    const bibleService = DI_CONTAINER.container.BibleService
+    //initial values
+
 
     const [testament, setTestament] = useState(TESTAMENTS.OLD_TESTAMENTS)
     const [bibleBookList, setBibleBookList] = useState(bibleService.getBookList(testament))
@@ -62,13 +64,15 @@ const BibleSearchTopNav: React.FC = () => {
     useEffect(() => {
         const book = bibleService.getBook(selectedBook)
         setChapterRange(book.numChapters)
+        const verses = bibleService.getBookVerses(selectedBook, chapterValue)
+        setChapterVerses(verses)
+        setVerseText(verses[verseValue - 1])
     }, [testament, selectedBook])
 
 
     useEffect(() => {
         const verses = bibleService.getBookVerses(selectedBook, chapterValue)
         setChapterVerses(verses)
-
     }, [isVerse])
 
     useEffect(() => {
@@ -76,10 +80,12 @@ const BibleSearchTopNav: React.FC = () => {
         setVerseText(chapterVerses[verseValue])
 
     }, [verseValue])
+
+
     useEffect(() => {
         const verses = bibleService.getBookVerses(selectedBook, chapterValue)
         setChapterVerses(verses)
-        setVerseText(chapterVerses[verseValue])
+        setVerseText(verses[verseValue - 1])
 
     }, [chapterValue])
 
@@ -94,6 +100,8 @@ const BibleSearchTopNav: React.FC = () => {
                 <IonSelect value={testament} placeholder="Select One" onIonChange={e => setTestament(e.detail.value)}>
                     <IonSelectOption value={TESTAMENTS.OLD_TESTAMENTS}>Old</IonSelectOption>
                     <IonSelectOption value={TESTAMENTS.NEW_TESTAMENTS}>New</IonSelectOption>
+                    <IonSelectOption value={TESTAMENTS.NEW_TESTAMENTS}>ALL</IonSelectOption>
+
                 </IonSelect>
             </IonItem>
             <BookSelection bookList={bibleBookList} selectedBook={selectedBook} setBook={setChildSelectedBook}/>
@@ -143,8 +151,6 @@ const BibleSearchTopNav: React.FC = () => {
                     <IonIcon icon={caretForward}/>
                 </IonFabButton>
             </IonFab>
-
-
         </IonContent>
     );
 };
