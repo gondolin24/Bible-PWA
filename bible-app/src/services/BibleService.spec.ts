@@ -1,6 +1,7 @@
 // @ts-ignore
 
 import {BibleService} from "./bible/BibleService";
+import {TESTAMENTS} from "../enums/Testaments";
 
 describe('Test Bible Service', () => {
 
@@ -21,6 +22,12 @@ describe('Test Bible Service', () => {
     it('test get initial verse ', () => {
         const bibleService = new BibleService()
         const initialVerse = bibleService.getInitialVerse('MARK')
+        expect("The beginning of the gospel of Jesus Christ, the Son of God;").toEqual(initialVerse)
+    })
+
+    it('test get all books ', () => {
+        const bibleService = new BibleService()
+        const initialVerse = bibleService.getBookList(TESTAMENTS.ALL_TESTAMENTS)
         expect("The beginning of the gospel of Jesus Christ, the Son of God;").toEqual(initialVerse)
     })
 
