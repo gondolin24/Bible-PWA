@@ -14,10 +14,29 @@ import * as SECOND_SAMUEL from '../bible/oldTestament/2Samuel.json'
 import * as FIRST_KINGS from '../bible/oldTestament/1Kings.json'
 import * as SECOND_KINGS from '../bible/oldTestament/2Kings.json'
 import * as EZRA from '../bible/oldTestament/Ezra.json'
-
-
+import * as JOB from '../bible/oldTestament/Job.json'
+import * as PSALMS from '../bible/oldTestament/Psalms.json'
 import {BibleBook} from "./BibleBook";
+import * as PROVERBS from '../bible/oldTestament/Proverbs.json'
+import * as ISAIAH from '../bible/oldTestament/Isaiah.json'
+import * as EZEKIEL from '../bible/oldTestament/Ezekiel.json'
+import * as DANIEL from '../bible/oldTestament/Daniel.json'
+import * as JOEL from '../bible/oldTestament/Joel.json'
+import * as MALACHI from '../bible/oldTestament/MALACHI.json'
+import * as MICAH from '../bible/oldTestament/Micah.json'
+import * as AMOS from '../bible/oldTestament/Amos.json'
+import * as JONAH from '../bible/oldTestament/Jonah.json'
+import * as HAGGAI from '../bible/oldTestament/Haggai.json'
 
+import * as NAHUM from '../bible/oldTestament/Nahum.json'
+import * as HOSEA from '../bible/oldTestament/Hosea.json'
+import * as OBADIAH from '../bible/oldTestament/OBADIAH.json'
+import * as HABAKKUK from '../bible/oldTestament/Habakkuk.json'
+import * as ZEPHANIAH from '../bible/oldTestament/Zephaniah.json'
+import * as lAMENTATIONS from '../bible/oldTestament/Lamentations.json'
+import * as JERMEMIAH from '../bible/oldTestament/Jeremiah.json'
+import * as ECCLESIASTES from '../bible/oldTestament/Ecclesiastes.json'
+import * as SONG_OF_SOLOMON from '../bible/oldTestament/SongOfSolomon.json'
 
 export class OldTestament extends Testament {
 
@@ -53,7 +72,7 @@ export class OldTestament extends Testament {
             JOEL,
             AMOS,
             OBADIAH,
-            JOHAH,
+            JONAH,
             MICAH,
             NAHUM,
             HABAKKUK,
