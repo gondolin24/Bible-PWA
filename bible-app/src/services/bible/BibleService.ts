@@ -107,4 +107,62 @@ export class BibleService {
     }
 
 
+    getNextVerse(book: string, chapterNum: number, verseNum: number, testament: string): any {
+        if (book === 'Revelation' && chapterNum === 22 && verseNum === 21) {
+            return {
+                bookName: 'Genesis',
+                bookChapter: 1,
+                verse: 1,
+                testament: TESTAMENTS.OLD_TESTAMENTS
+            }
+        }
+        if (book === 'Malachi' && chapterNum === 1 && verseNum === 1) {
+            return {
+                bookName: 'Matthew',
+                bookChapter: 1,
+                verse: 1,
+                testament: TESTAMENTS.NEW_TESTAMENTS
+            }
+        }
+        let verse = verseNum
+        let chapter = chapterNum
+        const nextVerse = verseNum + 1
+        const nextChapter = chapterNum + 1
+
+        const bookList = this.getBookList(testament)
+        let bookName = book
+
+        const currentChapterVerse = this.getBook(book).getChapter(chapter).numVerses - 1
+
+
+        if (nextVerse > currentChapterVerse) {
+
+            if (nextChapter > this.getBook(book).numChapters) {
+                const currentIndex = bookList.map((val, index) => {
+                    if (val === book) {
+                        return index
+                    }
+                    return null
+                }).find((val) => (val)) || 1
+                bookName = bookList[currentIndex + 1]
+                chapter = 1
+                verse = 1
+
+            } else {
+                chapter = nextChapter
+                verse = 1
+            }
+        } else {
+            verse = nextVerse
+        }
+
+        return {
+            bookName,
+            bookChapter: chapter,
+            verse,
+            testament
+        }
+    }
+
+
 }

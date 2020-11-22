@@ -121,20 +121,15 @@ const BibleSearchTopNav: React.FC = () => {
 
     function setNextVerse() {
 
-        // const expected = {
-        //     bookName: 'Mathew',
-        //     bookChapter: 4,
-        //     verse: 5,
-        //     hasPrevious: true
-        // }
-        //
-        // setTestament(TESTAMENTS.NEW_TESTAMENTS)
-        // setSelectedBook('Matthew')
-        // setChapterValue(15)
-        // const verses = bibleService.getBookVerses('Matthew', 15)
-        // setChapterVerses(verses)
-        // setVerseValue(15)
-        // setVerseText(verses[verseValue - 1])
+        const previousBook = bibleService.getNextVerse(selectedBook, chapterValue, verseValue, testament)
+        setTestament(previousBook.testament)
+        setBibleBookList(bibleService.getBookList(previousBook.testament))
+        setSelectedBook(previousBook.bookName)
+        setChapterValue(previousBook.bookChapter)
+        const verses = bibleService.getBookVerses(previousBook.bookName, previousBook.bookChapter)
+        setChapterVerses(verses)
+        setVerseValue(previousBook.verse)
+        setVerseText(verses[verseValue - 1])
     }
 
 

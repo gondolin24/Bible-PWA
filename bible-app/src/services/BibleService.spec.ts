@@ -69,4 +69,19 @@ describe('Test Bible Service', () => {
 
     })
 
+    it('test get previous chapter Gen 1,1', () => {
+
+        const bibleService = new BibleService()
+        const expected = {
+            bookName: 'Genesis',
+            bookChapter: 1,
+            verse: 2,
+            testament: TESTAMENTS.OLD_TESTAMENTS
+        }
+        const prev = bibleService.getNextVerse('Genesis', 1, 1, TESTAMENTS.OLD_TESTAMENTS)
+        expect(prev).toEqual(expected)
+
+    })
+
+
 })
