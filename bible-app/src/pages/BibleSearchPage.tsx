@@ -4,9 +4,10 @@ import BibleSearchTopNav from "../components/search/BibleSearchTopNav";
 
 interface ContainerProps {
     name: string;
+    savedVerses: any[];
 }
 
-const ExplorePage: React.FC<ContainerProps> = ({name}) => {
+const ExplorePage: React.FC<ContainerProps> = (props) => {
 
     return (
         <IonPage>
@@ -22,13 +23,13 @@ const ExplorePage: React.FC<ContainerProps> = ({name}) => {
             <IonContent fullscreen>
                 <IonHeader collapse="condense">
                     <IonToolbar>
-                        <IonTitle size="large">{name}</IonTitle>
+                        <IonTitle size="large">{props.name}</IonTitle>
                     </IonToolbar>
                 </IonHeader>
-                <BibleSearchTopNav/>
+                <BibleSearchTopNav savedVerses={props.savedVerses}/>
             </IonContent>
         </IonPage>
     );
-};
+}
 
 export default ExplorePage;

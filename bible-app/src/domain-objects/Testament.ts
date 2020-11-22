@@ -7,7 +7,6 @@ export abstract class Testament {
 
     constructor(bookList: BibleBook[]) {
         this._bookList = bookList;
-
     }
 
     get bookList(): BibleBook[] {
