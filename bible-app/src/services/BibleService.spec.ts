@@ -33,10 +33,40 @@ describe('Test Bible Service', () => {
 
     it('test get next chapter', () => {
 
+
     })
-    it('test get previous chapter', () => {
+    it('test get previous chapter genesis 1 1 1', () => {
+        const bibleService = new BibleService()
+
+        // const expected =
+
+    })
+    it('test get previous chapter Mathew 1 1 1', () => {
+        const bibleService = new BibleService()
+
+        // const expected =
 
     })
 
+    it('test get previous chapter Mathew 5,5', () => {
+        const bibleService = new BibleService()
+
+        // const expected =
+
+    })
+
+    it('test get previous chapter Mathew 5,1', () => {
+
+        const bibleService = new BibleService()
+        const expected = {
+            bookName: 'Matthew',
+            bookChapter: 4,
+            verse: 24,
+            testament: TESTAMENTS.NEW_TESTAMENTS
+        }
+        const prev = bibleService.getPreviousVerse('Matthew', 5, 1, TESTAMENTS.NEW_TESTAMENTS)
+        expect(prev).toEqual(expected)
+
+    })
 
 })

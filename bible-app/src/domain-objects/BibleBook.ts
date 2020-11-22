@@ -20,7 +20,7 @@ export class BibleBook {
             .map((chapter: any) => BibleChapter.fromRawData(chapter))
     }
 
-    getChapter(chapterNum: Number): BibleChapter {
+    getChapter(chapterNum: number): BibleChapter {
         // @ts-ignore
         let bookChapter = this.bookChapters[chapterNum - 1];
         return bookChapter

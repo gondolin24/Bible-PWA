@@ -39,6 +39,7 @@ const BibleSearchTopNav: React.FC = () => {
     const [flag, setFlag] = useState('primary')
     const [chapterRange, setChapterRange] = useState(30)
     const [verseText, setVerseText] = useState(bibleService.getInitialVerse(selectedBook))
+
     useEffect(() => {
         if (saved) {
             setFlag('primary')
@@ -52,8 +53,13 @@ const BibleSearchTopNav: React.FC = () => {
     useEffect(() => {
         const bookList = bibleService.getBookList(testament)
         setBibleBookList(bookList)
-        setSelectedBook(bookList[0])
+
+        //this is a work around for an interaction I did not knew existed
+        if (!bibleService.isBookInTestament(testament, selectedBook)) {
+            setSelectedBook(bookList[0])
+        }
     }, [testament])
+
 
     useEffect(() => {
         const book = bibleService.getBook(selectedBook)
@@ -84,7 +90,9 @@ const BibleSearchTopNav: React.FC = () => {
     useEffect(() => {
         setVerseText(chapterVerses[verseValue])
     }, [verseValue])
-
+    useEffect(() => {
+        console.log(selectedBook + 'selected chapter')
+    }, [selectedBook])
 
     useEffect(() => {
         const verses = bibleService.getBookVerses(selectedBook, chapterValue)
@@ -96,6 +104,39 @@ const BibleSearchTopNav: React.FC = () => {
     function setChildSelectedBook(val: any) {
         setSelectedBook(val)
     }
+
+
+    function setPrevious() {
+        const previousBook = bibleService.getPreviousVerse(selectedBook, chapterValue, verseValue, testament)
+        console.log(previousBook)
+        setTestament(previousBook.testament)
+        setBibleBookList(bibleService.getBookList(previousBook.testament))
+        setSelectedBook(previousBook.bookName)
+        setChapterValue(previousBook.bookChapter)
+        const verses = bibleService.getBookVerses(previousBook.bookName, previousBook.bookChapter)
+        setChapterVerses(verses)
+        setVerseValue(previousBook.verse)
+        setVerseText(verses[verseValue - 1])
+    }
+
+    function setNextVerse() {
+
+        // const expected = {
+        //     bookName: 'Mathew',
+        //     bookChapter: 4,
+        //     verse: 5,
+        //     hasPrevious: true
+        // }
+        //
+        // setTestament(TESTAMENTS.NEW_TESTAMENTS)
+        // setSelectedBook('Matthew')
+        // setChapterValue(15)
+        // const verses = bibleService.getBookVerses('Matthew', 15)
+        // setChapterVerses(verses)
+        // setVerseValue(15)
+        // setVerseText(verses[verseValue - 1])
+    }
+
 
     return (
         <IonContent>
@@ -145,13 +186,13 @@ const BibleSearchTopNav: React.FC = () => {
 
             </IonItem>
             <IonFab vertical="bottom" horizontal="start">
-                <IonFabButton color={'next'}>
+                <IonFabButton color={'next'} onClick={() => setPrevious()}>
                     <IonIcon icon={caretBack}/>
                 </IonFabButton>
             </IonFab>
 
             <IonFab vertical="bottom" horizontal="end">
-                <IonFabButton color={'next'}>
+                <IonFabButton color={'next'} onClick={() => setNextVerse()}>
                     <IonIcon icon={caretForward}/>
                 </IonFabButton>
             </IonFab>

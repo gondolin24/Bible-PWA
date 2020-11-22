@@ -44,20 +44,67 @@ export class BibleService {
 
     }
 
-    getAllChapterVerses() {
-
+    isBookInTestament(testament: string, book: string): boolean {
+        return this.getBookList(testament).some((val) => val === book)
     }
 
-    getVerses(): Number {
-        return 0
+    getPreviousVerse(book: string, chapterNum: number, verseNum: number, testament: string): any {
+        if (book === 'Genesis' && chapterNum === 1 && verseNum === 1) {
+            return {
+                bookName: 'Revelation',
+                bookChapter: 22,
+                verse: 21,
+                testament: TESTAMENTS.NEW_TESTAMENTS
+            }
+        }
+        if (book === 'Matthew' && chapterNum === 1 && verseNum === 1) {
+            return {
+                bookName: 'Malachi',
+                bookChapter: 4,
+                verse: 5,
+                testament: TESTAMENTS.OLD_TESTAMENTS
+            }
+        }
+
+        const prevVerse = verseNum - 1
+        const prevChapter = chapterNum - 1
+        let verse = verseNum
+        let chapter = chapterNum
+        let bookName = book
+
+        if (prevVerse == 0) {
+
+            if (prevChapter == 0) {
+                //change books
+                //get previous book
+
+                const bookList = this.getBookList(testament)
+                const currentIndex = bookList.map((val, index) => {
+                    if (val === book) {
+                        return index
+                    }
+                    return null
+                }).find((val) => (val)) || 1
+                bookName = bookList[currentIndex - 1]
+                chapter = this.getBook(bookName).numChapters
+                verse = this.getBook(bookName).getChapter(chapter).numVerses - 1
+            } else {
+                chapter = prevChapter
+                verse = this.getBook(bookName).getChapter(chapter).numVerses - 1
+            }
+
+        } else {
+            verse = prevVerse
+        }
+
+
+        return {
+            bookName,
+            bookChapter: chapter,
+            verse,
+            testament
+        }
     }
 
-    getVerse(): String {
-        return ''
-    }
-
-    getPreviousVerse() {
-
-    }
 
 }
