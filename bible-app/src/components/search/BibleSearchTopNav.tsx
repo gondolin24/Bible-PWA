@@ -21,10 +21,9 @@ import BookSelection from "./BookSelection";
 import {TESTAMENTS} from "../../enums/Testaments";
 import DI_CONTAINER from "../../d-i-containers/DependencyInjection";
 
+const bibleService = DI_CONTAINER.container.BibleService
 
 const BibleSearchTopNav: React.FC = () => {
-    const bibleService = DI_CONTAINER.container.BibleService
-    //initial values
 
     const [testament, setTestament] = useState(TESTAMENTS.OLD_TESTAMENTS)
     const [bibleBookList, setBibleBookList] = useState(bibleService.getBookList(testament))
