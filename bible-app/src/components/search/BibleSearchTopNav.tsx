@@ -40,7 +40,6 @@ const BibleSearchTopNav: React.FC = () => {
     const [flag, setFlag] = useState('primary')
     const [chapterRange, setChapterRange] = useState(30)
     const [verseText, setVerseText] = useState(bibleService.getInitialVerse(selectedBook))
-
     useEffect(() => {
         if (saved) {
             setFlag('primary')
@@ -60,9 +59,14 @@ const BibleSearchTopNav: React.FC = () => {
     useEffect(() => {
         const book = bibleService.getBook(selectedBook)
         setChapterRange(book.numChapters)
-        const verses = bibleService.getBookVerses(selectedBook, chapterValue)
+        let selectedChapter = book.numChapters
+        if (chapterValue < selectedChapter) {
+            selectedChapter = chapterValue
+        }
+        const verses = bibleService.getBookVerses(selectedBook, selectedChapter)
         setChapterVerses(verses)
         setVerseText(verses[verseValue - 1])
+        setChapterValue(selectedChapter)
     }, [testament, selectedBook])
 
     useEffect(() => {
@@ -71,9 +75,7 @@ const BibleSearchTopNav: React.FC = () => {
     }, [isVerse])
 
     useEffect(() => {
-
         setVerseText(chapterVerses[verseValue])
-
     }, [verseValue])
 
 
@@ -95,7 +97,7 @@ const BibleSearchTopNav: React.FC = () => {
                 <IonSelect value={testament} placeholder="Select One" onIonChange={e => setTestament(e.detail.value)}>
                     <IonSelectOption value={TESTAMENTS.OLD_TESTAMENTS}>Old</IonSelectOption>
                     <IonSelectOption value={TESTAMENTS.NEW_TESTAMENTS}>New</IonSelectOption>
-                    <IonSelectOption value={TESTAMENTS.ALL_TESTAMENTS}>ALL</IonSelectOption>
+                    <IonSelectOption value={TESTAMENTS.ALL_TESTAMENTS}>All</IonSelectOption>
 
                 </IonSelect>
             </IonItem>
@@ -120,7 +122,7 @@ const BibleSearchTopNav: React.FC = () => {
             <IonItem>
 
                 {isVerse &&
-                <IonRange min={1} max={chapterVerses.length} value={verseValue} step={1} pin={true}
+                <IonRange min={1} max={chapterVerses.length - 1} value={verseValue} step={1} pin={true}
                           onIonChange={e => setVerseValue(e.detail.value as number)}>
                     <IonIcon size="small" slot="start" icon={bookOutline}/>
                     <IonButton slot={'end'} onClick={() => setIsVerse(!isVerse)}>Verse</IonButton>
