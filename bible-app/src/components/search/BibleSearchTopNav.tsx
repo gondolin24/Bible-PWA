@@ -72,6 +72,14 @@ const BibleSearchTopNav: React.FC = () => {
     useEffect(() => {
         const verses = bibleService.getBookVerses(selectedBook, chapterValue)
         setChapterVerses(verses)
+
+        let selectedVerse = verses.length
+        if (verseValue < selectedVerse) {
+            selectedVerse = verseValue
+        }
+        setVerseText(chapterVerses[selectedVerse])
+        setVerseValue(selectedVerse)
+
     }, [isVerse])
 
     useEffect(() => {

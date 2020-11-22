@@ -31,5 +31,12 @@ describe('Test Bible Service', () => {
         expect("The beginning of the gospel of Jesus Christ, the Son of God;").toEqual(initialVerse)
     })
 
+    it('test get next chapter', () => {
+
+    })
+    it('test get previous chapter', () => {
+
+    })
+
 
 })
