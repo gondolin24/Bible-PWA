@@ -108,7 +108,7 @@ export class BibleService {
 
 
     getNextVerse(book: string, chapterNum: number, verseNum: number, testament: string): any {
-        if (book === 'Revelation' && chapterNum === 22 && verseNum === 21) {
+        if (book === 'Revelation' && chapterNum === 22 && verseNum >= 20) {
             return {
                 bookName: 'Genesis',
                 bookChapter: 1,
@@ -131,6 +131,8 @@ export class BibleService {
 
         const bookList = this.getBookList(testament)
         let bookName = book
+
+        console.log(book + "befrooee")
 
         const currentChapterVerse = this.getBook(book).getChapter(chapter).numVerses - 1
 

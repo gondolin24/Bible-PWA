@@ -108,7 +108,6 @@ const BibleSearchTopNav: React.FC = () => {
 
     function setPrevious() {
         const previousBook = bibleService.getPreviousVerse(selectedBook, chapterValue, verseValue, testament)
-        console.log(previousBook)
         setTestament(previousBook.testament)
         setBibleBookList(bibleService.getBookList(previousBook.testament))
         setSelectedBook(previousBook.bookName)

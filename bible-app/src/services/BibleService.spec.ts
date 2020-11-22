@@ -80,8 +80,22 @@ describe('Test Bible Service', () => {
         }
         const prev = bibleService.getNextVerse('Genesis', 1, 1, TESTAMENTS.OLD_TESTAMENTS)
         expect(prev).toEqual(expected)
-
     })
+
+
+    it('test get previous change from old to new', () => {
+
+        const bibleService = new BibleService()
+        const expected = {
+            bookName: 'Genesis',
+            bookChapter: 1,
+            verse: 1,
+            testament: TESTAMENTS.OLD_TESTAMENTS
+        }
+        const prev = bibleService.getNextVerse('Revelation', 22, 20, TESTAMENTS.NEW_TESTAMENTS)
+        expect(prev).toEqual(expected)
+    })
+
 
 
 })
