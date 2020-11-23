@@ -53,7 +53,7 @@ export class BibleService {
             return {
                 bookName: 'Revelation',
                 bookChapter: 22,
-                verse: 21,
+                verse: 20,
                 testament: TESTAMENTS.NEW_TESTAMENTS
             }
         }

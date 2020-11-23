@@ -30,7 +30,7 @@ interface ContainerProps {
 }
 
 const BibleSearchTopNav: React.FC<ContainerProps> = (props) => {
-
+        console.log(globalPersiter.globalObject)
         const [testament, setTestament] = useState(TESTAMENTS.OLD_TESTAMENTS)
         const [bibleBookList, setBibleBookList] = useState(bibleService.getBookList(testament))
         const [selectedBook, setSelectedBook] = useState(bibleBookList[0])

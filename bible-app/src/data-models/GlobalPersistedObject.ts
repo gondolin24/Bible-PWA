@@ -21,8 +21,7 @@ export class GlobalPersistedObject {
         if ((schema === undefined)) {
             return new GlobalPersistedObject([])
         }
-        const savedVerses = schema.savedVerses || {};
-
+        const savedVerses = schema.savedVerses || [];
         return new GlobalPersistedObject(savedVerses)
     }
 
