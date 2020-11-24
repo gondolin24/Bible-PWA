@@ -23,12 +23,7 @@ interface AppPage {
 }
 
 const appPages: AppPage[] = [
-    {
-        title: 'read',
-        url: '/page/Reader',
-        iosIcon: leafOutline,
-        mdIcon: leafSharp
-    },
+
     {
         title: 'Saved Verses',
         url: '/page/Saved',

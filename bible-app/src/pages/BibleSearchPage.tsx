@@ -4,7 +4,6 @@ import BibleSearchTopNav from "../components/search/BibleSearchTopNav";
 
 interface ContainerProps {
     name: string;
-    savedVerses: any[];
 }
 
 const ExplorePage: React.FC<ContainerProps> = (props) => {
@@ -26,7 +25,7 @@ const ExplorePage: React.FC<ContainerProps> = (props) => {
                         <IonTitle size="large">{props.name}</IonTitle>
                     </IonToolbar>
                 </IonHeader>
-                <BibleSearchTopNav savedVerses={props.savedVerses}/>
+                <BibleSearchTopNav/>
             </IonContent>
         </IonPage>
     );

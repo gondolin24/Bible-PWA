@@ -5,6 +5,10 @@ export class BibleChapter {
         return this._verses;
     }
 
+    getVerse(verse: number) {
+        return this._verses[verse - 1]
+    }
+
     constructor(verses: string[]) {
         this._verses = verses;
     }

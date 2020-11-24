@@ -22,8 +22,9 @@ export class BibleService {
         return this.getTestamentObject(testament).bookNameList
     }
 
-    getChapters(): Number {
-        return 0
+    getVerseText(book: string, chapter: number, verse: number) {
+        const bb = this.getBook(book)
+        return bb.getChapter(chapter).getVerse(verse)
     }
 
     getBook(book: string): BibleBook {

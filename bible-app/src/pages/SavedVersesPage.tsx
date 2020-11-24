@@ -1,22 +1,9 @@
 import React from 'react';
-import {
-    IonButtons,
-    IonCheckbox,
-    IonContent,
-    IonHeader,
-    IonItem,
-    IonLabel,
-    IonMenuButton,
-    IonPage,
-    IonTitle,
-    IonToolbar
-} from "@ionic/react";
+import {IonButtons, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
+import ListContainer from "../components/favorites/ListContainer";
 
-interface ContainerProps {
-    name: string;
-}
 
-const SavedVersesPage: React.FC<ContainerProps> = ({name}) => {
+const SavedVersesPage: React.FC = () => {
 
     return (
         <IonPage>
@@ -25,22 +12,11 @@ const SavedVersesPage: React.FC<ContainerProps> = ({name}) => {
                     <IonButtons slot="start">
                         <IonMenuButton/>
                     </IonButtons>
-                    <IonTitle>Bible Reader</IonTitle>
+                    <IonTitle>Saved Verses</IonTitle>
                 </IonToolbar>
             </IonHeader>
+            <ListContainer/>
 
-            <IonContent fullscreen>
-                <IonHeader collapse="condense">
-                    <IonToolbar>
-                        <IonTitle size="large">{name}</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
-                <IonItem>
-                    <IonLabel>John 34</IonLabel>
-
-                    <IonCheckbox slot="start" color="primary"/>
-                </IonItem>
-            </IonContent>
         </IonPage>
     );
 };

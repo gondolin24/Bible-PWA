@@ -25,11 +25,7 @@ const bibleService = DI_CONTAINER.container.BibleService
 const globalPersiter = DI_CONTAINER.container.GlobalPersister
 
 
-interface ContainerProps {
-    savedVerses: any[];
-}
-
-const BibleSearchTopNav: React.FC<ContainerProps> = (props) => {
+const BibleSearchTopNav: React.FC = () => {
         console.log(globalPersiter.globalObject)
         const [testament, setTestament] = useState(TESTAMENTS.OLD_TESTAMENTS)
         const [bibleBookList, setBibleBookList] = useState(bibleService.getBookList(testament))

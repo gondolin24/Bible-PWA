@@ -21,16 +21,11 @@ import './theme/variables.css';
 import DI_CONTAINER from "./d-i-containers/DependencyInjection";
 import ExplorePage from "./pages/BibleSearchPage";
 import {GlobalPersistedObject} from "./data-models/GlobalPersistedObject";
+import SavedVersesPage from "./pages/SavedVersesPage";
 
 
 const App: React.FC = () => {
     const persister = DI_CONTAINER.container.GlobalPersister
-    const savedVerse = [{
-        book: 'Genesis',
-        verse: 1,
-        chapter: 1
-    }
-    ]
 
     const [inital, setInitial] = useState(true);
     const [appMetaData, setAppMetaData] = useState(GlobalPersistedObject.initial());
@@ -55,7 +50,12 @@ const App: React.FC = () => {
                     <IonRouterOutlet id="main">
                         <Route path="/page/Explorer"
                                component={() => (
-                                   <ExplorePage name={'Explorer'} savedVerses={savedVerse}/>
+                                   <ExplorePage name={'Explorer'}/>
+                               )}
+                               exact={true}/>
+                        <Route path="/page/Saved"
+                               component={() => (
+                                   <SavedVersesPage/>
                                )}
                                exact={true}/>
                         <Redirect from="/" to="/page/Explorer" exact/>
