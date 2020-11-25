@@ -5,8 +5,6 @@ import DI_CONTAINER from "../../d-i-containers/DependencyInjection";
 const globalPersist = DI_CONTAINER.container.GlobalPersister
 
 const ListContainer: React.FC = () => {
-
-
     return (
         <IonContent fullscreen>
             <IonItem>
