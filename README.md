@@ -1,6 +1,6 @@
 # The holy bible
-##king james version
- Main features:
+## king james version
+### Main features:
 * search
 * saving versed
 * reading
