@@ -12,7 +12,15 @@ import {
 
 import React from 'react';
 import {useLocation} from 'react-router-dom';
-import {bookmarkOutline, bookSharp, leafOutline, leafSharp, searchOutline, searchSharp} from 'ionicons/icons';
+import {
+    bookmarkOutline,
+    bookSharp,
+    flashlight,
+    flashlightOutline,
+    flashlightSharp,
+    searchOutline,
+    searchSharp
+} from 'ionicons/icons';
 import './Menu.css';
 
 interface AppPage {
@@ -25,16 +33,16 @@ interface AppPage {
 const appPages: AppPage[] = [
 
     {
-        title: 'Saved Verses',
-        url: '/page/Saved',
-        iosIcon: bookmarkOutline,
-        mdIcon: bookSharp
-    },
-    {
         title: 'Find',
         url: '/page/Explorer',
         iosIcon: searchOutline,
         mdIcon: searchSharp
+    },
+    {
+        title: 'Saved Verses',
+        url: '/page/Saved',
+        iosIcon: bookmarkOutline,
+        mdIcon: bookSharp
     }
 ];
 
@@ -45,8 +53,8 @@ const Menu: React.FC = () => {
         <IonMenu contentId="main" type="overlay">
             <IonContent>
                 <IonList id="inbox-list">
-                    <IonListHeader>Inbox</IonListHeader>
-                    <IonNote>hi@ionicframework.com</IonNote>
+                    <IonListHeader>The Holy Bible</IonListHeader>
+                    <IonNote>King James Version</IonNote>
                     {appPages.map((appPage, index) => {
                         return (
                             <IonMenuToggle key={index} autoHide={false}>
