@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">bible-app-remastered</string>
+    <string name="title_activity_main">bible-app-remastered</string>
+    <string name="package_name">com.guzman.bible</string>
+    <string name="custom_url_scheme">com.guzman.bible</string>
+</resources>
