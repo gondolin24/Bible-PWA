@@ -1,0 +1,13 @@
+{
+  "appId": "com.guzman.bible",
+  "appName": "bible-app-remastered",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
