@@ -44,6 +44,7 @@ const InfoPage: React.FC = () => {
                         Thank you for downloading this app.
                         This is a free and ad free version of the New King James Version of the Holy Bible.
                         All features are free and I will never charge a penny.
+                        Active development as more features will be added.
                     </IonCardContent>
                 </IonCard>
                 <IonCard>
