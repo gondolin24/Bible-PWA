@@ -12,15 +12,7 @@ import {
 
 import React from 'react';
 import {useLocation} from 'react-router-dom';
-import {
-    bookmarkOutline,
-    bookSharp,
-    flashlight,
-    flashlightOutline,
-    flashlightSharp,
-    searchOutline,
-    searchSharp
-} from 'ionicons/icons';
+import {bookmarkOutline, bookSharp, helpOutline, helpSharp, searchOutline, searchSharp} from 'ionicons/icons';
 import './Menu.css';
 
 interface AppPage {
@@ -43,6 +35,12 @@ const appPages: AppPage[] = [
         url: '/page/Saved',
         iosIcon: bookmarkOutline,
         mdIcon: bookSharp
+    },
+    {
+        title: 'About',
+        url: '/page/Info',
+        iosIcon: helpOutline,
+        mdIcon: helpSharp
     }
 ];
 
@@ -54,7 +52,7 @@ const Menu: React.FC = () => {
             <IonContent>
                 <IonList id="inbox-list">
                     <IonListHeader>The Holy Bible</IonListHeader>
-                    <IonNote>King James Version</IonNote>
+                    <IonNote>New King James Version</IonNote>
                     {appPages.map((appPage, index) => {
                         return (
                             <IonMenuToggle key={index} autoHide={false}>

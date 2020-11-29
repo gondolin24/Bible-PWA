@@ -22,6 +22,7 @@ import DI_CONTAINER from "./d-i-containers/DependencyInjection";
 import ExplorePage from "./pages/BibleSearchPage";
 import {GlobalPersistedObject} from "./data-models/GlobalPersistedObject";
 import SavedVersesPage from "./pages/SavedVersesPage";
+import InfoPage from "./pages/InfoPage";
 
 
 const App: React.FC = () => {
@@ -56,6 +57,11 @@ const App: React.FC = () => {
                         <Route path="/page/Saved"
                                component={() => (
                                    <SavedVersesPage/>
+                               )}
+                               exact={true}/>
+                        <Route path="/page/Info"
+                               component={() => (
+                                   <InfoPage/>
                                )}
                                exact={true}/>
                         <Redirect from="/" to="/page/Explorer" exact/>
