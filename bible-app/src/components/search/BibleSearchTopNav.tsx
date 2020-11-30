@@ -26,7 +26,7 @@ const globalPersiter = DI_CONTAINER.container.GlobalPersister
 
 
 const BibleSearchTopNav: React.FC = () => {
-        console.log(globalPersiter.globalObject)
+
         const [testament, setTestament] = useState(TESTAMENTS.OLD_TESTAMENTS)
         const [bibleBookList, setBibleBookList] = useState(bibleService.getBookList(testament))
         const [selectedBook, setSelectedBook] = useState(bibleBookList[0])
@@ -149,6 +149,10 @@ const BibleSearchTopNav: React.FC = () => {
         }
 
         useEffect(() => {
+
+            const vv = globalPersiter.globalObject.savedVerses
+            setSavedVerses(vv)
+
             const isSaved = savedVerses.some((obj: any) => {
                 return obj.book === selectedBook && obj.verse === verseValue && obj.chapter === chapterValue
             })

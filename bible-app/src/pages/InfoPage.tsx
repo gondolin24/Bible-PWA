@@ -34,7 +34,7 @@ const InfoPage: React.FC = () => {
 
                 <IonCard>
                     <IonCardContent>
-                        {'App Version V.1.0.1'}
+                        {'App Version V.1.2.0s'}
                     </IonCardContent>
                 </IonCard>
 
@@ -44,6 +44,7 @@ const InfoPage: React.FC = () => {
                         Thank you for downloading this app.
                         This is a free and ad free version of the New King James Version of the Holy Bible.
                         All features are free and I will never charge a penny.
+                        Active development as more features will be added.
                     </IonCardContent>
                 </IonCard>
                 <IonCard>
