@@ -34,6 +34,7 @@ const ListContainer: React.FC = () => {
 
 
     const removeVerse = (selectedVerse: any) => {
+        console.log('remove')
         const newVerses = savedVerse.filter((verse: any) => (verse !== selectedVerse))
         globalPersist.saveSavedVerses(newVerses).then().catch()
         setSavedVerse(newVerses)
@@ -64,8 +65,8 @@ const ListContainer: React.FC = () => {
                                 <h3>Chapter {verse.chapter} Verse {verse.verse}</h3>
                             </IonLabel> </IonItem>
 
-                        <IonItemOptions side="end">
-                            <IonItemOption color="danger" onClick={() => removeVerse(verse)}>Remove</IonItemOption>
+                        <IonItemOptions side="end" onClick={() => removeVerse(verse)}>
+                            <IonItemOption color="danger" >Remove</IonItemOption>
                         </IonItemOptions>
                     </IonItemSliding>
                 )
