@@ -1,25 +1,36 @@
 import React, {useEffect, useState} from 'react';
 import {
+    IonButton,
+    IonButtons,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle,
     IonContent,
+    IonHeader,
     IonIcon,
     IonItem,
     IonItemOption,
     IonItemOptions,
     IonItemSliding,
     IonLabel,
-    IonList
+    IonList,
+    IonModal, IonTitle,
+    IonToolbar
 } from "@ionic/react";
 import DI_CONTAINER from "../../d-i-containers/DependencyInjection";
-import {bookOutline, chevronBack} from "ionicons/icons";
+import {chevronBack} from "ionicons/icons";
 
 const globalPersist = DI_CONTAINER.container.GlobalPersister
+const bibleService = DI_CONTAINER.container.BibleService
 
 const ListContainer: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
     const [savedVerse, setSavedVerse] = useState(globalPersist.globalObject.savedVerses)
 
     const [renderedVerses, setRenderedVerse] = useState()
-    const [selectedVerse, setSelectedVerse] = useState({})
+    const [modalData, setModalData] = useState({book: '', chapter: '', verse: '', verseText: ''})
 
 
     const removeVerse = (selectedVerse: any) => {
@@ -47,7 +58,7 @@ const ListContainer: React.FC = () => {
                 return (
                     <IonItemSliding key={index}>
 
-                        <IonItem>
+                        <IonItem onClick={() => modalAction(verse)}>
                             <IonLabel>
                                 <h2>{verse.book}</h2>
                                 <h3>Chapter {verse.chapter} Verse {verse.verse}</h3>
@@ -68,6 +79,13 @@ const ListContainer: React.FC = () => {
         setSavedVerse(vv)
     })
 
+    const modalAction = (selectedVerse: any) => {
+        setShowModal(true)
+        const modalFieldData = Object.assign(selectedVerse)
+        modalFieldData.verseText = bibleService.getVerseText(selectedVerse.book, selectedVerse.chapter, selectedVerse.verse)
+        setModalData(modalFieldData)
+    }
+
     return (
         <IonContent fullscreen>
             <IonList>
@@ -85,6 +103,31 @@ const ListContainer: React.FC = () => {
                     </IonItemOptions>
                 </IonItemSliding>
             </IonList>
+            <IonModal isOpen={showModal}>
+                <IonHeader translucent>
+                    <IonToolbar>
+                        <IonButtons slot="primary">
+                            <IonButton onClick={() => setShowModal(false)}>Close</IonButton>
+                        </IonButtons>
+                    </IonToolbar>
+                </IonHeader>
+                <IonContent>
+                    <IonCard>
+
+                        <IonCardHeader>
+                            <IonCardSubtitle>Chapter {modalData.chapter}, verse {modalData.verse}</IonCardSubtitle>
+                            <IonCardTitle>Book of {modalData.book}</IonCardTitle>
+                        </IonCardHeader>
+
+
+                        <IonCardContent>
+                            {modalData.verseText}
+                        </IonCardContent>
+                    </IonCard>
+                </IonContent>
+
+
+            </IonModal>
         </IonContent>
     );
 };
