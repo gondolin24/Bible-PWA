@@ -6,7 +6,7 @@ const globalPersist = DI_CONTAINER.container.GlobalPersister
 
 const ListContainer: React.FC = () => {
 
-   const savedItems =  globalPersist.globalObject.savedVerses.map((verse: any, index: any) => {
+   let savedItems = globalPersist.globalObject.savedVerses.map((verse: any, index: any) => {
         return (
             <IonItem key={index}>
                 <IonLabel>
@@ -16,6 +16,21 @@ const ListContainer: React.FC = () => {
             </IonItem>
         )
     })
+
+
+    if(savedItems.length===0){
+        savedItems =  (
+            <IonItem>
+                <IonLabel>
+                    <h3>
+                    No saved verses
+                    </h3>
+                </IonLabel>
+            </IonItem>
+
+        )
+    }
+
 
     return (
         <IonContent fullscreen>

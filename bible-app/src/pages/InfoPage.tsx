@@ -34,7 +34,7 @@ const InfoPage: React.FC = () => {
 
                 <IonCard>
                     <IonCardContent>
-                        {'App Version V.1.0.1'}
+                        {'App Version V.1.2.0s'}
                     </IonCardContent>
                 </IonCard>
 
