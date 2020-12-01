@@ -16,7 +16,7 @@ import {
     IonItemSliding,
     IonLabel,
     IonList,
-    IonModal, IonTitle,
+    IonModal,
     IonToolbar
 } from "@ionic/react";
 import DI_CONTAINER from "../../d-i-containers/DependencyInjection";
@@ -77,7 +77,7 @@ const ListContainer: React.FC = () => {
     useEffect(() => {
         const vv = globalPersist.globalObject.savedVerses
         setSavedVerse(vv)
-    })
+    },[])
 
     const modalAction = (selectedVerse: any) => {
         setShowModal(true)
