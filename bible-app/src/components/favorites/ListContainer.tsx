@@ -34,7 +34,6 @@ const ListContainer: React.FC = () => {
 
 
     const removeVerse = (selectedVerse: any) => {
-        console.log('remove')
         const newVerses = savedVerse.filter((verse: any) => (verse !== selectedVerse))
         globalPersist.saveSavedVerses(newVerses).then().catch()
         setSavedVerse(newVerses)
