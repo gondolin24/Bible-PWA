@@ -6,8 +6,6 @@ import {
     IonCardContent,
     IonContent,
     IonHeader,
-    IonItem,
-    IonLabel,
     IonMenuButton,
     IonPage,
     IonTitle,
@@ -34,7 +32,7 @@ const InfoPage: React.FC = () => {
 
                 <IonCard>
                     <IonCardContent>
-                        {'App Version V.1.2.0'}
+                        {'App Version V.1.3.0'}
                     </IonCardContent>
                 </IonCard>
 
@@ -45,15 +43,6 @@ const InfoPage: React.FC = () => {
                         This is a free and ad free version of the New King James Version of the Holy Bible.
                         All features are free and I will never charge a penny.
                         Active development as more features will be added.
-                    </IonCardContent>
-                </IonCard>
-                <IonCard>
-                    <IonItem>
-                        <IonLabel>How can I support? </IonLabel>
-                    </IonItem>
-                    <IonCardContent>
-                        <img src={require('./coffee_logo.png')}
-                             onClick={() => window.location.href = "https://www.buymeacoffee.com/generic"}/>
                     </IonCardContent>
                 </IonCard>
 
